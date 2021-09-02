@@ -1,5 +1,70 @@
-.times_heading {
-    font-family: 'Times New Roman', Times, serif;
-    font-style: italic;
-    font-weight: 400;
+.about_table {
+    background-color: #05304F;
+    border-color: #05304F;
+    color: white
 }
+
+.book_table {
+    margin: auto;
+    width: 60%;
+    background-color: #05304F;
+    border-color:white;
+    color: white
+}
+
+.trhover:hover {
+    background-color: darkgray;
+}
+
+thead {
+    background-color: darkred;
+}
+
+
+.table_text {
+    font-size:larger;
+}
+
+.responsive {
+    width: 100%;
+    height: auto;
+  }
+
+nav {
+    padding: 10px;
+    margin-bottom: 40px;
+    background-color: darkred;
+    color: white;
+}
+
+body {
+    background-color: #05304F;
+}
+
+h1 {
+    color: white;
+    padding-bottom: 20px;
+}
+
+p {
+    color: white;
+    font-size: large;
+    font-weight: 600;
+    text-align: center;
+}
+
+img {
+    padding-bottom: 30px;
+    margin-right: 20px;
+}
+
+td, tr, thead {
+    color: white;
+}
+
+
+
+  
+
+
+
