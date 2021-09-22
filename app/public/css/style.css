@@ -67,6 +67,7 @@ nav {
 }
 
 
+
 body {
     background-color: #05304F;
 }
@@ -74,13 +75,14 @@ body {
 h1 {
     color: white;
     padding-bottom: 20px;
+    text-align: center;
 }
 
-img {
-    margin-right: 20px;
+h3 {
+    text-align: center;
 }
 
-td, tr, thead, label, h3, a {
+td, tr, thead, label, h3, a, p, li {
     color: white;
 }
 
@@ -91,6 +93,7 @@ footer{
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
+    margin-top: 200px;
   }
 
 /* Below CSS from http://tristen.ca/tablesort/demo/ */
