@@ -43,9 +43,6 @@
     </a>
     </div>
     <div class="col col-8">
-      <!--<form v-on:submit.prevent="fetchUserData">
-        <button type="submit">Refresh</button>
-      </form>-->
 
       <!--Methods taken from Vue.js documentation site https://vuejs.org/ -->
       <p>Name: {{ person.name.first }} {{ person.name.last }}</p>
@@ -53,6 +50,9 @@
       <p>Birthday: {{ prettyBirthday }}</p>
       <p>Age: {{ person.dob.age }}</p>
       <p>Email: <a v-bind:href="'mailto:'+person.email">{{ person.email }}</a></p>
+      <form v-on:submit.prevent="fetchUserData">
+        <button type="submit" class="btn btn-primary darkred">Refresh</button>
+      </form>
 
 
       
