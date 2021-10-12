@@ -26,66 +26,28 @@
 </nav>
   <br>
 <h3><b>Check out these Books!</b></h3>
-<br>
-<br>
-<table id="booktable" class="table table-bordered table-striped book_table">
-  <thead>
-    <tr>
-      <th scope="col">Title</th>
-      <th scope="col">Author</th>
-      <th scope="col">Year Published</th>
-      <th scope="col">Pages</th>
-      <th scope="col">MSRP</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="trhover">
-      <td>Huckleberry Finn</td>
-      <td>Mark Twain</td>
-      <td>1800</td>
-      <td>100</td>
-      <td>$10.99</td>
-    </tr>
-    <tr>
-      <td>Harry Potter</td>
-      <td>JK Rowling</td>
-      <td>2002</td>
-      <td>175</td>
-      <td>20.99</td>
-    </tr>
-    <tr>
-      <td>The Lord of the Rings</td>
-      <td>JRR Tolkien</td>
-      <td>1937</td>
-      <td>224</td>
-      <td>$35.00</td>
-    </tr>
-    <tr>
-      <td>The Hobbit</td>
-      <td>JRR Tolkien</td>
-      <td>1937</td>
-      <td>310</td>
-      <td>$14.49</td>
-    </tr>
-    <tr>
-      <td>The Lion, the Witch, and the Wardrobe</td>
-      <td>CS Lewis</td>
-      <td>1950</td>
-      <td>310</td>
-      <td>$13.99</td>
-    </tr>
-    <tr>
-      <td>The Stand</td>
-      <td>Stephen King</td>
-      <td>2004</td>
-      <td>1175</td>
-      <td>$20.99</td>
-    </tr>
-  </tbody>
-</table>
-<br>
-<br>
-<br>
+<div id="bookApp" class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Book</th>
+        <th>Author</th>
+        <th>Year</th>
+        <th>Pages</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+      <tbody>
+          <tr v-for="book in books">
+              <td>{{ book.title }}</td>
+              <td>{{ book.author }}</td>
+              <td>{{ book.pubyear }}</td>
+              <td>{{ book.pages }}</td>
+              <td>{{ book.MSRP }}</td>
+          </tr>
+      </tbody>
+  </table>
+</div>
 <h3>Add a Book here!</h3>
 
 
@@ -121,7 +83,7 @@
 </footer>
 
 <!--- script from plugin http://tristen.ca/tablesort/demo/-->
-<script src="js/tablesort.min.js"></script>
+<script src="js/book.js"></script>
 <script>
   new Tablesort(document.getElementById('booktable'));
 </script>
