@@ -29,54 +29,55 @@
   <br>
 <h3><b>Check out these Books!</b></h3>
 <div id="bookApp" class="container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Book</th>
-        <th>Author</th>
-        <th>Year</th>
-        <th>Pages</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-      <tbody>
-          <tr v-for="book in books">
-              <td>{{ book.title }}</td>
-              <td>{{ book.author }}</td>
-              <td>{{ book.pubyear }}</td>
-              <td>{{ book.pages }}</td>
-              <td>{{ book.MSRP }}</td>
-          </tr>
-      </tbody>
-  </table>
+  <div class="col col-4"></div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Book</th>
+          <th>Author</th>
+          <th>Year</th>
+          <th>Pages</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+        <tbody>
+            <tr v-for="book in books">
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.pubyear }}</td>
+                <td>{{ book.pages }}</td>
+                <td>{{ book.MSRP }}</td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+  <div>
+    <form v-on:submit.prevent="postNewBook">
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" v-model="bookForm.title"
+        class="form-control" id="title">
+      </div>
+      <div class="mb-3">
+        <label for="author" class="form-label">Author</label>
+        <input type="text" v-model="bookForm.author" class="form-control" id="author">
+      </div>
+      <div class="mb-3">
+        <label for="pubyear" class="form-label">Year Published</label>
+        <input type="number" v-model="bookForm.pubyear" class="form-control" id="pubyear">
+      </div>
+      <div class="mb-3">
+        <label for="pages" class="form-label">Pages</label>
+        <input type="number" v-model="bookForm.pages" class="form-control" id="pages">
+      </div>
+      <div class="mb-3">
+        <label for="MSRP" class="form-label">MSRP</label>
+        <input type="number" v-model="bookForm.MSRP" class="form-control" id="MSRP">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
 </div>
-<h3>Add a Book here!</h3>
-
-
-<form>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <input type="email" class="form-control" id="inputtitle" placeholder="Title"><br>
-    </div>
-    <div class="form-group col-md-6">
-      <input type="password" class="form-control" id="inputauthor" placeholder="Author"><br>
-    </div>
-  </div>
-  <div class="form-group col-md-6">
-    <input type="text" class="form-control" id="inputyear" placeholder="Year Published"><br>
-  </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <input type="text" class="form-control" id="inputpages" placeholder="Pages"><br>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6"> 
-      <input type="text" class="form-control" id="imputmsrp" placeholder="MSRP"><br>
-  </div>
-  </div>
-  <button type="submit" class="btn btn-primary darkred">Add</button>
-</form>
 
 
 <footer>
