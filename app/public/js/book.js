@@ -22,6 +22,7 @@ const bookTableApp = {
         },
 
         postNewBook(evt) {
+           
             fetch('api/books/create.php', {
                 method:'POST',
                 body: JSON.stringify(this.bookForm),
@@ -31,7 +32,7 @@ const bookTableApp = {
               })
               .then( response => response.json() )
               .then( json => {
-                console.log("Returned from post:", json);
+                
                 // TODO: test a result was returned!
                 this.books = json;
                 
