@@ -20,6 +20,13 @@ const bookTableApp = {
                 console.error(err);
             })
         },
+        postBook(evt) {
+          if(this.selectedBook == null) {
+            this.postNewBook(evt);
+          } else {
+            this.postEditBook(evt);
+          }
+        },
 
         selectBook(o) {
           this.selectedBook = o;
