@@ -6,6 +6,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
   <link rel="stylesheet" type="text/css" href="./css/style.css">
 
 </head>
@@ -19,100 +21,75 @@
         <a class="nav-link" href="about.html"><b>About</b></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="books.html"><b>Books</b></a>
+        <a class="nav-link" href="bookdb.html"><b>Books</b></a>
       </li>
     </ul>
   </div>
 </nav>
   <br>
 <h3><b>Check out these Books!</b></h3>
-<br>
-<br>
-<table id="booktable" class="table table-bordered table-striped book_table">
-  <thead>
-    <tr>
-      <th scope="col">Title</th>
-      <th scope="col">Author</th>
-      <th scope="col">Year Published</th>
-      <th scope="col">Pages</th>
-      <th scope="col">MSRP</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="trhover">
-      <td>Huckleberry Finn</td>
-      <td>Mark Twain</td>
-      <td>1800</td>
-      <td>100</td>
-      <td>$10.99</td>
-    </tr>
-    <tr>
-      <td>Harry Potter</td>
-      <td>JK Rowling</td>
-      <td>2002</td>
-      <td>175</td>
-      <td>20.99</td>
-    </tr>
-    <tr>
-      <td>The Lord of the Rings</td>
-      <td>JRR Tolkien</td>
-      <td>1937</td>
-      <td>224</td>
-      <td>$35.00</td>
-    </tr>
-    <tr>
-      <td>The Hobbit</td>
-      <td>JRR Tolkien</td>
-      <td>1937</td>
-      <td>310</td>
-      <td>$14.49</td>
-    </tr>
-    <tr>
-      <td>The Lion, the Witch, and the Wardrobe</td>
-      <td>CS Lewis</td>
-      <td>1950</td>
-      <td>310</td>
-      <td>$13.99</td>
-    </tr>
-    <tr>
-      <td>The Stand</td>
-      <td>Stephen King</td>
-      <td>2004</td>
-      <td>1175</td>
-      <td>$20.99</td>
-    </tr>
-  </tbody>
-</table>
-<br>
-<br>
-<br>
-<h3>Add a Book here!</h3>
-
-
-<form>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <input type="email" class="form-control" id="inputtitle" placeholder="Title"><br>
-    </div>
-    <div class="form-group col-md-6">
-      <input type="password" class="form-control" id="inputauthor" placeholder="Author"><br>
-    </div>
+<div id="bookApp" class="container">
+  <div class="col col-4"></div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Book</th>
+          <th>Author</th>
+          <th>Year</th>
+          <th>Pages</th>
+          <th>Status</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+        <tbody>
+            <tr v-for="book in books">
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.pubyear }}</td>
+                <td>{{ book.pages }}</td>
+                <td>{{ book.MSRP }}</td>
+                <td>
+                  <button type="button" class="btn btn-outline-secondary btn-sm"
+                    v-on:click="selectBook(book)">Edit
+                  </button>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-outline-secondary btn-sm"
+                    v-on:click="postDeleteBook(book)">Delete
+                  </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
   </div>
-  <div class="form-group col-md-6">
-    <input type="text" class="form-control" id="inputyear" placeholder="Year Published"><br>
+  <div>
+    <form v-on:submit.prevent="postNewBook">
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" v-model="bookForm.title"
+        class="form-control" id="title">
+      </div>
+      <div class="mb-3">
+        <label for="author" class="form-label">Author</label>
+        <input type="text" v-model="bookForm.author" class="form-control" id="author">
+      </div>
+      <div class="mb-3">
+        <label for="pubyear" class="form-label">Year Published</label>
+        <input type="number" v-model="bookForm.pubyear" class="form-control" id="pubyear">
+      </div>
+      <div class="mb-3">
+        <label for="pages" class="form-label">Pages</label>
+        <input type="number" v-model="bookForm.pages" class="form-control" id="pages">
+      </div>
+      <div class="mb-3">
+        <label for="MSRP" class="form-label">MSRP</label>
+        <input type="number" v-model="bookForm.MSRP" class="form-control" id="MSRP">
+      </div>
+      <button type="submit" class="btn btn-primary" name="button" id="button">Submit</button>
+    </form>
   </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <input type="text" class="form-control" id="inputpages" placeholder="Pages"><br>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6"> 
-      <input type="text" class="form-control" id="imputmsrp" placeholder="MSRP"><br>
-  </div>
-  </div>
-  <button type="submit" class="btn btn-primary darkred">Add</button>
-</form>
+</div>
 
 
 <footer>
@@ -121,9 +98,10 @@
 </footer>
 
 <!--- script from plugin http://tristen.ca/tablesort/demo/-->
-<script src="js/tablesort.min.js"></script>
+<script src="js/book.js"></script>
 <script>
   new Tablesort(document.getElementById('booktable'));
 </script>
 </body>
 </html>
+
