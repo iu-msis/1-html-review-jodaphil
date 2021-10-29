@@ -72,24 +72,28 @@ const bookTableApp = {
                     this.bookForm = {};
                   });
               },
-        postDeleteBook(book) {
-                if (!confirm("Are you sure you want to delete the record for "+book.title+"?")) {
-                      return;
+              postDeleteBook(b) {
+                if (!confirm("Are you sure you want to delete the book from "+b.title+"?")) {
+                  return;
                 }
-                console.log("Starting to Delete");
+                console.log("Delete!", b);
+        
                 fetch('api/books/delete.php', {
-                method:'POST',
-                body: JSON.stringify(book),
-                headers: {
+                    method:'POST',
+                    body: JSON.stringify(b),
+                    headers: {
                       "Content-Type": "application/json; charset=utf-8"
-                      }
+                    }
                   })
-                .then( response => response.json() )
-                .then( json => {
+                  .then( response => response.json() )
+                  .then( json => {
                     console.log("Returned from post:", json);
                     // TODO: test a result was returned!
-                    this.books = json;
-                    });
+                    this.offers = json;
+        
+                    // reset the form
+                    this.resetBookForm();
+                  });
           }
     },
        
