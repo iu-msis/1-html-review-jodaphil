@@ -28,8 +28,8 @@ const bookTableApp = {
           }
         },
 
-        selectBook(o) {
-          this.selectedBook = o;
+        selectBook(b) {
+          this.selectedBook = b;
           this.bookForm = Object.assign({}, this.selectedBook);
         },
 
@@ -101,7 +101,12 @@ const bookTableApp = {
                     // reset the form
                     this.resetBookForm();
                   });
+          },
+          resetBookForm() {
+            this.selectedBook = null;
+            this.bookForm = {};
           }
+        
     },
        
     created() {
